@@ -23,9 +23,10 @@ def sigmoid(x):
 # Set the size of the array
 input_size = 784
 layer_size = 16
+output_digits = 10
 
-lower_weight_limit = -0.4
-upper_weight_limit = 0.4
+lower_weight_limit = -4
+upper_weight_limit = 4
 
 bias = 0
 
@@ -59,7 +60,7 @@ for next_layer_index in range(layer_size):
         layer1_weights_matrix[next_layer_index].insert(layer1_index, random.uniform(lower_weight_limit, upper_weight_limit))
 
 # Initialize a matrix of weights initialized to a random number between 0 and 1 for the second layer
-for next_layer_index in range(layer_size):
+for next_layer_index in range(output_digits):
     layer2_weights_matrix.insert(next_layer_index, [])
     for layer2_index in range(layer_size):
         layer2_weights_matrix[next_layer_index].insert(layer2_index, random.uniform(lower_weight_limit, upper_weight_limit))
@@ -78,9 +79,13 @@ for layer_index in range(layer_size):
 
     layer2_array.insert(layer_index, layer2_element_weighted_sum)
 
-print(layer1_array)
-print(layer2_array)
+# For each output element, calculate the weighted sum of the inputs and store it in the output array
+for layer_index in range(output_digits):
+    layer_weights = layer2_weights_matrix[layer_index]
+    output_element_weighted_sum = sigmoid(get_weighted_sum(layer2_array, layer_weights) + bias)
 
+    output_array.insert(layer_index, output_element_weighted_sum)
 
-# for index, input in enumerate(input_array):
-#     print(index)
+#print(layer1_array)
+#print(layer2_array)
+print(output_array)
