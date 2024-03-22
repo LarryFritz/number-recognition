@@ -36,11 +36,15 @@ input_weights_matrix = []
 
 layer1_array = []
 layer1_weights_matrix = []
+layer1_biases = [0] * layer_size
+
 
 layer2_array = []
 layer2_weights_matrix = []
+layer2_biases = [0] * layer_size
 
 output_array = []
+output_biases = [0] * output_digits
 
 # Initialize input values as random numbers between 0 and 1 in an array that represents each pixel in a 28x28 grayscale image
 for _ in range(input_size):
@@ -68,21 +72,21 @@ for next_layer_index in range(output_digits):
 # For each layer 1 element, calculate the weighted sum of the inputs and store it in the layer 1 array
 for layer_index in range(layer_size):
     layer_weights = input_weights_matrix[layer_index]
-    layer1_element_weighted_sum = sigmoid(get_weighted_sum(input_array, layer_weights) + bias)
+    layer1_element_weighted_sum = sigmoid(get_weighted_sum(input_array, layer_weights) + layer1_biases[layer_index])
 
     layer1_array.insert(layer_index, layer1_element_weighted_sum)
 
 # For each layer 2 element, calculate the weighted sum of the inputs and store it in the layer 2 array
 for layer_index in range(layer_size):
     layer_weights = layer1_weights_matrix[layer_index]
-    layer2_element_weighted_sum = sigmoid(get_weighted_sum(layer1_array, layer_weights) + bias)
+    layer2_element_weighted_sum = sigmoid(get_weighted_sum(layer1_array, layer_weights) + layer2_biases[layer_index])
 
     layer2_array.insert(layer_index, layer2_element_weighted_sum)
 
 # For each output element, calculate the weighted sum of the inputs and store it in the output array
 for layer_index in range(output_digits):
     layer_weights = layer2_weights_matrix[layer_index]
-    output_element_weighted_sum = sigmoid(get_weighted_sum(layer2_array, layer_weights) + bias)
+    output_element_weighted_sum = sigmoid(get_weighted_sum(layer2_array, layer_weights) + output_biases[layer_index])
 
     output_array.insert(layer_index, output_element_weighted_sum)
 
