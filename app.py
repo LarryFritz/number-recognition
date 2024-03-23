@@ -57,17 +57,29 @@ for layer_index in range(layer_size):
     for input_index in range(input_size):
         input_weights_matrix[layer_index].insert(input_index, random.uniform(lower_weight_limit, upper_weight_limit))
 
+# Randomize layer 1 biases
+for bias_index, bias in enumerate(layer1_biases):
+    layer1_biases[bias_index] = random.randint(lower_weight_limit, upper_weight_limit)        
+
 # Initialize a matrix of weights initialized to a random number between 0 and 1 for the first layer
 for next_layer_index in range(layer_size):
     layer1_weights_matrix.insert(next_layer_index, [])
     for layer1_index in range(layer_size):
         layer1_weights_matrix[next_layer_index].insert(layer1_index, random.uniform(lower_weight_limit, upper_weight_limit))
 
+# Randomize layer 2 biases
+for bias_index, bias in enumerate(layer2_biases):
+    layer2_biases[bias_index] = random.randint(lower_weight_limit, upper_weight_limit)     
+
 # Initialize a matrix of weights initialized to a random number between 0 and 1 for the second layer
 for next_layer_index in range(output_digits):
     layer2_weights_matrix.insert(next_layer_index, [])
     for layer2_index in range(layer_size):
         layer2_weights_matrix[next_layer_index].insert(layer2_index, random.uniform(lower_weight_limit, upper_weight_limit))
+
+# Randomize output biases
+for bias_index, bias in enumerate(output_biases):
+    output_biases[bias_index] = random.randint(lower_weight_limit, upper_weight_limit)        
 
 # For each layer 1 element, calculate the weighted sum of the inputs and store it in the layer 1 array
 for layer_index in range(layer_size):
