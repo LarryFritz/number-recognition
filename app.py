@@ -19,6 +19,9 @@ def sigmoid(x):
         z = math.exp(x)
         sig = z / (1 + z)
         return sig
+    
+def relu(x):
+    return max(0, x)
 
 # Set the size of the array
 input_size = 784
