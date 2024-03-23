@@ -1,5 +1,8 @@
 import random
 import math
+import numpy as np
+import idx2numpy
+from pathlib import Path
 
 def get_weighted_sum(inputs, weights):
     weighted_sum = 0
@@ -107,4 +110,20 @@ for layer_index in range(output_digits):
 
 #print(layer1_array)
 #print(layer2_array)
-print(output_array)
+#print(output_array)
+    
+p = Path('./output_data')
+p.mkdir(exist_ok=True)
+    
+with (p / 'input_weights.txt').open('wb+') as input_weights_write:
+    np.savetxt(input_weights_write, input_weights_matrix)
+
+with (p / 'layer1_weights.txt').open('wb+') as layer1_weights_write:
+    np.savetxt(layer1_weights_write, layer1_weights_matrix)
+
+with (p / 'layer2_weights.txt').open('wb+') as layer2_weights_write:
+    np.savetxt(layer2_weights_write, layer2_weights_matrix)
+
+# f_read = (p / 'input_weights.txt').open('rb')
+# test = np.loadtxt(f_read).tolist()
+# print(test)
