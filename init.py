@@ -118,11 +118,20 @@ p.mkdir(exist_ok=True)
 with (p / 'input_weights.txt').open('wb+') as input_weights_write:
     np.savetxt(input_weights_write, input_weights_matrix)
 
+with (p / 'layer1_biases.txt').open('wb+') as layer1_biases_write:
+    np.savetxt(layer1_biases_write, layer1_biases)
+
 with (p / 'layer1_weights.txt').open('wb+') as layer1_weights_write:
     np.savetxt(layer1_weights_write, layer1_weights_matrix)
 
+with (p / 'layer2_biases.txt').open('wb+') as layer2_biases_write:
+    np.savetxt(layer2_biases_write, layer2_biases)
+
 with (p / 'layer2_weights.txt').open('wb+') as layer2_weights_write:
     np.savetxt(layer2_weights_write, layer2_weights_matrix)
+
+with (p / 'output_biases.txt').open('wb+') as output_biases_write:
+    np.savetxt(output_biases_write, output_biases)
 
 # f_read = (p / 'input_weights.txt').open('rb')
 # test = np.loadtxt(f_read).tolist()
